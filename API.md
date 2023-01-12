@@ -20,5 +20,11 @@
             const  TABLE = 'articles';
             protected  $table = SELF::TABLE;
     Mass assigment on Article Model
+
+### RELATIONS TRAITS
+    - Gonna set the relationship btn user and article
+    - Create a folder called Traits
+            Traits/HasAuthour.php
+            Traits/ModelHelpers.php :If an aouthor has written an articles
     
 

@@ -45,6 +45,18 @@
     - Seed into databasee
         php artisan migrate:fresh --seed    
 
+## CREATE CONTROLLER 
+    - Create a controllers
+        php artisan make:controller API/V1/ArticleController -m Article --api 
+    - ArticleController Methods
+            Index
+            Store
+            Show
+            Update
+            Delete
+    - Create AuthorController
+        php artisan make:controller API/V1/AuthorController 
+        
 
 
 

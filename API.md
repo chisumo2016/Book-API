@@ -26,5 +26,39 @@
     - Create a folder called Traits
             Traits/HasAuthour.php
             Traits/ModelHelpers.php :If an aouthor has written an articles
+    Implement the logic to all traits 
+    Create a relationship to user model
+    Use traits in the article model
+             use HasAuthor;
+            use ModelHelpers;
+
+### CREATE FACTORIES AND SEEDERS
+    - Create factory for Article
+         php artisan make:factory ArticleFactory  
+    - Create seeder for Articles
+        php artisan make:seed ArticlesTableSeeder  
+    - Create seeder for Users
+         php artisan make:seed UsersTableSeeder
+    - Wtite all logics in both factory
+    - Wtite all logics in both seeders table
+    - Call all seeder in DatabaseSeeder
+    - Seed into databasee
+        php artisan migrate:fresh --seed    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 

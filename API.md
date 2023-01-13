@@ -81,8 +81,23 @@
     - Open Author Response Resource, retur certain fields
             Stucture of data we send to our clients
         
-            
-            
+## API ROUTES
+    - Add the route in api files
+    - First before starting the writing the routes  we should understand the RouteService Provider
+        We want to do versioning like V1 http: blog.test/api/V1/articles
+        Add the versioning on RouteServiceProvider
+            Two options of versioning
+                1: In RouteServiceProvider
+                        Route::middleware('api.v1')
+                            ->prefix('api')
+                            ->group(base_path('routes/api_v1.php'));
+
+                2: In api route file
+    - Get Articles either by ID or Slug , we can implement this ligic into RouteServiceProvider
+            Route::bind('article',function ($value){
+            return \App\Models\Article::where('id', $value)
+                ->orWhere('slug', $value)->firstOrFail();
+        });
         
 
 

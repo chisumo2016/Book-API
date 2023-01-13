@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\V1\ArticleController;
+use App\Http\Controllers\API\V1\AuthorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +15,19 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+/**http: blog.test/api/v1/articles */
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function (){
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+  /*Articles*/
+    Route::apiResource('/articles', ArticleController::class);
+
+    /*Authors*/
+    Route::apiResource('/authors/{user}', [AuthorController::class,'show'])->name('authors');
 });
+
+
+
+
+//Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+//    return $request->user();
+//});

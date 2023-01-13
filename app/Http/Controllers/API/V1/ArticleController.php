@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ArticleCollection;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return new ArticleCollection(Article::all());
     }
 
     /**

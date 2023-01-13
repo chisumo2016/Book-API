@@ -56,6 +56,33 @@
             Delete
     - Create AuthorController
         php artisan make:controller API/V1/AuthorController 
+
+## API RESOURCE
+    - To generate two api resources
+    - Create an article resource
+        php artisan make:resource V1/ArticleResource 
+        php artisan make:resource V1/AuthorResource  
+        php artisan make:resource V1/ArticleCollection -c  
+    - Resource extends to JsonResponce
+    - Colleccction extends to ResourceCollection
+    -To make use of collectionn let open the ArticleController
+        retun  new ArticleCollection(Article::all());
+    - To send type of data to our client in the ArticleCollection
+             'data' => $this->collection,
+             with(){}
+             withResponse(){}
+    - Stucture we send to a front end.
+    - In the ArticleRessource we need to defined what we can return to our clients.
+            Author can have many articles
+            Article belong to User
+            Define  type, attributes, relatioships , links 
+            add two methods with(){} withResponse(){}
+
+    - Open Author Response Resource, retur certain fields
+            Stucture of data we send to our clients
+        
+            
+            
         
 
 

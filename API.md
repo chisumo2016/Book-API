@@ -133,6 +133,12 @@
         - Store
         - Update
         - Delete
+    - Make a customs request  or validate inside the controller
+    - Implemennt all the logic to all methods.
+    - In delete logic we have two  ways to implement.
+            return  response()->json(null, 204);
+            return  response()->setStatusCode(204);
+            
 
 
 

@@ -98,14 +98,26 @@
             return \App\Models\Article::where('id', $value)
                 ->orWhere('slug', $value)->firstOrFail();
         });
-        
 
-
-
-
-
-
-
+### POSTMAN & CUSTOM EXCEPTION 
+    - Need top create a workplace  Academy
+    - Create a collections  call  ArticleApi
+                set an authentication on the collections itself ArticleApi
+                Everything inside the collection will use that authentiocations
+    - Add the request
+            Get All Articless
+             GET:    http://api-book-project.test/api/v1/articles
+                
+            Copy all url , under collection itself. 
+            Tabs:    Autthorization |  Pre-request Script | Test  | Variables  | Runs
+            Click variables to create a variables in postman
+                VARIABLE        INITIAL VALUE   CURRENT VALUE 
+                APP_URL                         http://api-book-project.test/
+                FULL_URL                        http://api-book-project.test/api/v1
+            click Save Button
+    - GET {{ FULL_URL }}/articles
+    - Next thing under the headers - way to receive the data
+         accept    : application/jsonss
 
 
 

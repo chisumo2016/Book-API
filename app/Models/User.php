@@ -47,6 +47,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function id():  string
+    {
+        return  (string) $this->id;
+    }
+    public function name():string
+    {
+        return  $this->name;
+    }
+
     public  function  articles(): HasMany
     {
         return $this->hasMany(Article::class,'author_id');

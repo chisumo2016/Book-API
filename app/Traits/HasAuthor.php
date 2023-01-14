@@ -13,7 +13,7 @@
 
         public  function  authorRelation(): BelongsTo
         {
-            return  $this->belongs(User::class, 'author_id');
+            return  $this->belongsTo(User::class, 'author_id');
         }
 
         public function isAuthoredBy(User $user): bool

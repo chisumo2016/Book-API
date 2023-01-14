@@ -24,7 +24,7 @@ class Article extends Model
         'author_id'
     ];
 
-    public function id():string
+    public function id():  string
     {
         return  (string) $this->id;
     }

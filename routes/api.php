@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /**http: blog.test/api/v1/articles */
-Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function (){
+Route::group(
+    [
+        'prefix' => 'v1',
+
+    ],
+    function (){
 
   /*Articles*/
     Route::apiResource('/articles', ArticleController::class);
 
     /*Authors*/
-    Route::apiResource('/authors/{user}', [AuthorController::class,'show'])->name('authors');
+    Route::get('/authors/{user}', [AuthorController::class, 'show'])->name('authors');
 });
 
 

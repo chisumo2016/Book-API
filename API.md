@@ -126,8 +126,13 @@
     - If article isn't available , we need to send a right exception to a user. NotFoundHttpException
         app/Exceptions/Handler.php  on file you can add the error message .
             
+    - Test 
+        GET: {{FULL_URL}}/articles/1
 
-
+### CONTROLLER METHODS
+        - Store
+        - Update
+        - Delete
 
 
 

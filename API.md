@@ -116,8 +116,16 @@
                 FULL_URL                        http://api-book-project.test/api/v1
             click Save Button
     - GET {{ FULL_URL }}/articles
+                {{FULL_URL}}/articles
     - Next thing under the headers - way to receive the data
-         accept    : application/jsonss
+         accept    : application/jsons
+    - Disable middleware
+    - Get single article
+            GET:    http://api-book-project.test/api/v1/articles/1
+                    {{FULL_URL}}/articles/1
+    - If article isn't available , we need to send a right exception to a user. NotFoundHttpException
+        app/Exceptions/Handler.php  on file you can add the error message .
+            
 
 
 

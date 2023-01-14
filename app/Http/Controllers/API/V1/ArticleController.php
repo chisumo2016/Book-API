@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ArticleCollection;
+use App\Http\Resources\V1\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -34,11 +35,13 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Article $article)
     {
-        //
+        return (new ArticleResource($article))
+            ->response()
+            ->setStatusCode(200);
     }
 
     /**

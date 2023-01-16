@@ -139,6 +139,74 @@
             return  response()->json(null, 204);
             return  response()->setStatusCode(204);
             
+## TEST ENDPOINTS WITH POSTMAN
+    - we're going to test all the endpoints of articles.
+                    GET:    http://api-book-project.test/api/v1/articles
+                    GET:    http://api-book-project.test/api/v1/articles/1
+                    POST:   http://api-book-project.test/api/v1/articles
+                        HEADER  
+                        Accept               application/json
+                
+                        BODY (Send the data to the server)
+                        x-www-form-urlencoded
+                            KEY                 VALUE
+
+                    PUT:   http://api-book-project.test/api/v1/articles/11
+                        HEADER  
+                        Accept               application/json
+                
+                        BODY (Send the data to the server)
+                        x-www-form-urlencoded
+                            KEY                 VALUE
+                            n/a                  n/a
+
+                    DEL:   http://api-book-project.test/api/v1/articles/11
+                        HEADER  
+                        Accept               application/json
+                
+                        BODY (Send the data to the server)
+                        x-www-form-urlencoded
+                            KEY                 VALUE
+
+### SANCTUM - BEARER TOKEN
+    - Add the middleware in api route file.
+        'middleware' => 'auth:sanctum',
+    - 401 Unautherntocated
+    - Create Auth login (create with laravel breeze installation)
+            POST :  http://api-book-project.test/api/login
+             HEADER  
+                Accept               application/json
+
+            BODY (Send the data to the server)
+                        form-data
+                            KEY                 VALUE
+                            email
+                            password
+    - when we hit the endpoint , return endpoint , with token
+        Books API 
+            Authorization
+                SELECT   Type  : Bearer Token
+
+    - Open the AuthentticatedSessionController 
+            $user = Auth::user();// $user = \auth()->user();
+            return response()->json([
+    
+            ]);
+
+            $user = \auth()->user();
+        return response()->json([
+                'success' => true,
+                'data' =>[
+                    /**This is the token we gonna use to authenticated the user*/
+                    'token'   => $user->createToken($user->name())->plainTextToken,
+                    'name'    => $user->name()
+                ],
+                    'message' => 'User Logged in'
+        ]);
+    - Afteer that ,go postman and authenticate the user
+    ERROR:    "message": "CSRF token mismatch.",
+                         
+
 
 
 

@@ -21,9 +21,10 @@ class ArticleResource extends JsonResource
             'id'   => $this->id(),
 
             'attributes' =>  [
-                'title'  => $this->title(),
-                'slug'   => $this->slug(),
-                'created_at' => $this->created_at,
+                'title'         => $this->title(),
+                'slug'          => $this->slug(),
+                'description'   => $this->description(),
+                'created_at'    => $this->created_at,
             ],
             /** Relationship 1:M */
             'relationships' => [
@@ -32,8 +33,8 @@ class ArticleResource extends JsonResource
 
             /** Links*/
             'links'  => [
-                'self' => route('articles.show', $this->id()),
-                'related' => route('articles.show', $this->slug())
+                'self'      => route('articles.show', $this->id()),
+                'related'   => route('articles.show', $this->slug())
             ]
         ];
     }

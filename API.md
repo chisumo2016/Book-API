@@ -5,6 +5,10 @@
         composer require laravel/breeze --dev
         php artisan breeze:install api
 
+## INSTALL LARAVEL SANCTUM
+        php composer require laravel/sanctum 
+        php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
 ### CREATE MODELS AND MIGRATION
     Laravel Sanctun installed by default.
     Create an Article Model and Migration
@@ -140,6 +144,7 @@
             return  response()->setStatusCode(204);
             
 ## TEST ENDPOINTS WITH POSTMAN
+    - Postman is API client
     - we're going to test all the endpoints of articles.
                     GET:    http://api-book-project.test/api/v1/articles
                     GET:    http://api-book-project.test/api/v1/articles/1
@@ -206,7 +211,62 @@
     - Afteer that ,go postman and authenticate the user
     ERROR:    "message": "CSRF token mismatch.",
                          
+## POSTMAN - "CSRF TOKEN MISMATCH"
+    - How to fix the token mismatch
+        "message": "CSRF token mismatch."
+        SOLUTION:
+        Go to verifyCsrfToken and add
+              protected $except = [
+                "/api/*",
+                '/login'
+            ];
+        To run in localhost server
+            php artisan serve
+            This were the laravel will store the cookie
+                [http://127.0.0.1:8000]. 
 
+    Pre-request Script of Postman
+        pm.sendRequest({
+         url : 'http://127.0.0.1:8000/sanctum/csrf.cookie',
+            method: 'GET'
+        }, function(error, response, [cookies]){
+        console.log(cookies)
+        })
+    Set Variable in the collectiion
+        pm.sendRequest({
+            url : 'http://127.0.0.1:8000/sanctum/csrf.cookie',
+            method: 'GET'
+        }, function(error, response, [cookies]){
+        console.log(response.headers)
+        pm.collectionVariables.set('csrf-token',cookies.get('XSRF-TOKEN'))
+        })
+
+    POST:  http://127.0.0.1:8000/LOGIN
+
+    X-XSRF-TOKEN        {{csrf-token}}
+
+## AUTH USER , USER RESOURCE AND ROUTE
+    - create the invokable controller 
+        php artisan make:controller API/v1/UserController -i   
+    - Create user Resource
+    
+
+### API RESPONSE TRAIT (Code reuse in single inheritance)
+   - Create a HttpResponses file app/Traits/HttpResponses.php
+   - Namespace is the path to this file
+   - success accept three parameters
+        - $data - information we're going to send to a user
+        - $message - null
+        - $code - 200
+   - We're going use inside the controller
+     - Generate controller
+       - php artisan make:controller API/AuthController
+   - We can access the traits inside the controller use HttpResponses;
+
+## REGISTER FUNCTIONALITY
+    - When we dont have user in our database
+    - Create requuest
+        
 
 
 

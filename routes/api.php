@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\V1\ArticleController;
+use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\AuthorController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,21 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /**http: blog.test/api/v1/articles */
-Route::group(
-    [
-        'prefix' => 'v1',
-        'middleware' => 'auth:sanctum'
-    ],
-    function (){
 
-  /*Articles*/
-    Route::apiResource('/articles', ArticleController::class);
-
-    /*Authors*/
-    Route::get('/authors/{user}', [AuthorController::class, 'show'])->name('authors');
-});
-
-
+Route::post('/login',    [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout',   [AuthController::class, 'logout']);
 
 
 //Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
